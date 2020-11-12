@@ -1,0 +1,24 @@
+productDockerImage: gwtm11/product_container:latest
+productService:
+  type: ClusterIP
+productDeployment:
+  replicationSet:
+    replicas: 1
+    progressDeadlineSeconds: 120
+    minReadySeconds: 30
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+serviceAccount:
+  name: product
+environment:
+  orderName: ORDER_SERVICE
+  orderValue: service-order
+  productName: PRODUCT_SERVICE
+  productValue: service-product
+  userName: USER_SERVICE
+  userValue: service-user
+  pythonBufferName: PYTHONUNBUFFERED
+  pythonBufferValue: 1
+
+    

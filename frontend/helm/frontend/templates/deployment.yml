@@ -1,0 +1,52 @@
+---
+{{ if .Values.frontendDockerImage }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{template "deploymentName" .}}
+spec:
+  replicas: {{ .Values.frontendDeployment.replicationSet.replicas }}
+  progressDeadlineSeconds: {{ .Values.frontendDeployment.replicationSet.progressDeadlineSeconds }}
+  minReadySeconds: {{ .Values.frontendDeployment.replicationSet.minReadySeconds }}
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{ .Values.frontendDeployment.replicationSet.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.frontendDeployment.replicationSet.rollingUpdate.maxUnavailable }}
+  selector:
+    matchLabels:
+      app: {{ template "labelName" .}}
+  template:
+    metadata:
+      labels:
+        app: {{ template "labelName" .}}
+    #   annotations:
+    #     prometheus.io/scrape: "true"
+    #     prometheus.io/path: /metrics
+    #     prometheus.io/port: "3000"
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name}}
+      # automountServiceAccountToken: false
+      containers:
+        - name: {{ template "labelName" .}}
+          image: {{ .Values.frontendDockerImage }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: {{ .Values.environment.orderName}}
+              value: {{ .Values.environment.orderValue}}
+            - name: {{ .Values.environment.productName}}
+              value: {{ .Values.environment.productValue}}
+            - name: {{ .Values.environment.userName}}
+              value: {{ .Values.environment.userValue}}
+            - name: {{ .Values.environment.pythonBufferName}}
+              value: {{ .Values.environment.pythonBufferValue}}
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
+{{ end }}

@@ -1,0 +1,18 @@
+---
+{{ if .Values.userDockerImage }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "serviceName" .}}
+  labels:
+    app: {{ template "labelName" .}}
+spec:
+  type: {{ .Values.userService.type }}
+  selector:
+    app: {{ template "labelName" .}}
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 5000
+  {{ end }}
