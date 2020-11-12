@@ -1,5 +1,6 @@
 from flask import session
 import requests
+import os
 
 
 class UserClient:
@@ -11,7 +12,8 @@ class UserClient:
             'username': form.username.data,
             'password': form.password.data,
         }
-        url = 'http://user:5000/api/user/login'
+        # url = os.getenv('USER-CLIENT')
+        url = 'http://'+os.getenv('USER_SERVICE')+'/api/user/login'
         response = requests.request("POST", url=url, data=payload)
         if response:
             d = response.json()
@@ -21,7 +23,9 @@ class UserClient:
 
     @staticmethod
     def does_exist(username):
-        url = 'http://user:5000/api/user/'+username+'/exist'
+        # url = os.getenv('USER-CLIENT')+username+'/exist'
+        # 'http://user:5000/api/user/'+username+'/exist'
+        url = 'http://'+os.getenv('USER_SERVICE')+'/api/user/'+username+'/exist'
         response = requests.request("GET", url=url)
         return response.status_code == 200
 
@@ -35,7 +39,7 @@ class UserClient:
             'last_name': form.last_name.data,
             'username': form.username.data
         }
-        url = 'http://user:5000/api/user/create'
+        url = 'http://'+os.getenv('USER_SERVICE')+'/api/user/create'
         response = requests.request("POST", url=url, data=payload)
         if response:
             user = response.json()
@@ -47,6 +51,6 @@ class UserClient:
             'Authorization': 'Basic ' + session['user_api_key']
         }
 
-        response = requests.request(method="GET", url='http://user:5000/api/user', headers=headers)
+        response = requests.request(method="GET", url='http://'+os.getenv('USER_SERVICE')+'/api/user', headers=headers)
         user = response.json()
         return user

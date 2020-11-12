@@ -1,4 +1,4 @@
-from flask import render_template, session, redirect, url_for, flash, request
+from flask import render_template, session, redirect, url_for, flash, request,jsonify
 import requests
 from flask_login import current_user
 from . import forms
@@ -6,6 +6,8 @@ from . import frontend_blueprint
 from .api.UserClient import UserClient
 from .api.OrderClient import OrderClient
 from .api.ProductClient import ProductClient
+import os
+
 
 
 # Home page
@@ -69,6 +71,7 @@ def register():
 
             # Search for existing user
             user = UserClient.does_exist(username)
+            print(user,"*******************************")
             if user:
                 # Existing user found
                 flash('Please try another username', 'error')

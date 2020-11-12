@@ -1,5 +1,6 @@
 from flask import session
 import requests
+import os
 
 
 class OrderClient:
@@ -9,15 +10,15 @@ class OrderClient:
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
-
-        response = requests.request(method="GET", url='http://order:5000/api/order', headers=headers)
+        response = requests.request(method="GET", url='http://'+os.getenv('ORDER_SERVICE')+'/api/order', headers=headers)
         order = response.json()
         return order
 
     @staticmethod
     def update_order(items):
 
-        url = 'http://order:5000/api/order/update'
+        # url = os.getenv('ORDER-CLIENT')
+        url = 'http:/'+os.getenv('ORDER_SERVICE')+'/api/order/update'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
@@ -33,7 +34,7 @@ class OrderClient:
             'product_id': product_id,
             'qty': qty,
         }
-        url = 'http://order:5000/api/order/add-item'
+        url = 'http://'+os.getenv('ORDER_SERVICE')+'/api/order/add-item'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
@@ -45,7 +46,7 @@ class OrderClient:
 
     @staticmethod
     def post_checkout():
-        url = 'http://order:5000/api/order/checkout'
+        url = 'http://'+os.getenv('ORDER_SERVICE')+'/api/order/checkout'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
