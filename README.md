@@ -13,10 +13,10 @@ When Deployed 7 diffrent pods get created in AWS with High availability in diffr
 *In Jenkins setup, for each build all the deployments undergo several layers of load and performance testing*
 
 ### Security
-*Service account and role binding can be setup for k8 clusters to ensure security*
-*Secured TLS endpoints can be implemented*
-*Encryption at rest and in transit*
-*ELK stack can be deployed on all the pods to get the logs*
+* *Service account and role binding can be setup for k8 clusters to ensure security*
+* *Secured TLS endpoints can be implemented*
+* *Encryption at rest and in transit*
+* *ELK stack can be deployed on all the pods to get the logs*
 
 
 
@@ -128,5 +128,9 @@ helm uninstall order
 helm uninstall product
 helm uninstall user
 ```
+
+#### After Deployment
+
+![Deployment](Images/Deployments.png)
 
 
