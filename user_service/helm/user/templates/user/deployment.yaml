@@ -25,8 +25,6 @@ spec:
     #     prometheus.io/path: /metrics
     #     prometheus.io/port: "3000"
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name}}
-      # automountServiceAccountToken: false
       containers:
         - name: {{ template "labelName" .}}
           image: {{ .Values.userDockerImage }}
@@ -34,19 +32,21 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: {{ .Values.environment.orderName}}
+            - name: ORDER_SERVICE
               value: {{ .Values.environment.orderValue}}
-            - name: {{ .Values.environment.productName}}
+            - name: PRODUCT_SERVICE
               value: {{ .Values.environment.productValue}}
-            - name: {{ .Values.environment.userName}}
+            - name: USER_SERVICE
               value: {{ .Values.environment.userValue}}
-            - name: {{ .Values.environment.pythonBufferName}}
-              value: {{ .Values.environment.pythonBufferValue}}
+            - name: PYTHONUNBUFFERED
+              value: "1"
+            - name: DB-HOST
+              value: {{ .Values.environment.HOSTNAMEVALUE}}
           resources:
             requests:
-              memory: "100Mi"
-              cpu: "500m"
+              memory: "64Mi"
+              cpu: "10m"
             limits:
               memory: "256Mi"
-              cpu: "1000m"
+              cpu: "500m"
 {{ end }}

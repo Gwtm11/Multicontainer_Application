@@ -1,5 +1,8 @@
 orderDockerImage: gwtm11/order_container:latest
+mysqlImage: mysql:5.7.22
 orderService:
+  type: ClusterIP
+dbService:
   type: ClusterIP
 orderDeployment:
   replicationSet:
@@ -9,8 +12,18 @@ orderDeployment:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
+dbDeployment:
+  replicationSet:
+    replicas: 1
+    progressDeadlineSeconds: 120
+    minReadySeconds: 30
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
 serviceAccount:
   name: order
+dbServiceAccount:
+  name: product-db
 environment:
   orderName: ORDER_SERVICE
   orderValue: service-order
@@ -20,5 +33,11 @@ environment:
   userValue: service-user
   pythonBufferName: PYTHONUNBUFFERED
   pythonBufferValue: 1
+  DB_NAME: MYSQL_DATABASE
+  DB_VAL: order
+  DB_PWD_NAME: MYSQL_ROOT_PASSWORD
+  DB_PWD: test
+  HOST-NAME: DB-HOST
+  HOSTNAMEVALUE: db-order
 
     

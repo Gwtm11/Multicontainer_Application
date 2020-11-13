@@ -5,6 +5,7 @@ from user_api import user_api_blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask.sessions import SecureCookieSessionInterface
 import models
+import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
@@ -14,7 +15,7 @@ load_dotenv(dotenv_path='../.env')
 
 app.config.update(dict(
     SECRET_KEY="powerful secretkey",
-    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@user-db/user',
+    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@'+os.getenv('DB-HOST')+'/user',
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 ))
 

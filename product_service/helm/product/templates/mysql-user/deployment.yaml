@@ -1,0 +1,47 @@
+---
+{{ if .Values.mysqlImage }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{template "deploymentName" .}}-db
+spec:
+  replicas: {{ .Values.dbDeployment.replicationSet.replicas }}
+  progressDeadlineSeconds: {{ .Values.dbDeployment.replicationSet.progressDeadlineSeconds }}
+  minReadySeconds: {{ .Values.dbDeployment.replicationSet.minReadySeconds }}
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{ .Values.dbDeployment.replicationSet.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.dbDeployment.replicationSet.rollingUpdate.maxUnavailable }}
+  selector:
+    matchLabels:
+      app: {{ template "labelName" .}}-db
+  template:
+    metadata:
+      labels:
+        app: {{ template "labelName" .}}-db
+    #   annotations:
+    #     prometheus.io/scrape: "true"
+    #     prometheus.io/path: /metrics
+    #     prometheus.io/port: "3000"
+    spec:
+      containers:
+        - name: {{ template "labelName" .}}
+          image: {{ .Values.mysqlImage }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: {{ .Values.environment.DB_NAME}}
+              value: {{ .Values.environment.DB_VAL}}
+            - name: {{ .Values.environment.DB_PWD_NAME}}
+              value: {{ .Values.environment.DB_PWD}}
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+    
+{{ end }}

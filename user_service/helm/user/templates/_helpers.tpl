@@ -26,6 +26,10 @@
 {{- printf "%s-%s" "service" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
+{{- define "dbServiceName" }}
+{{- printf "%s-%s" "db" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- end }}
+
 {{- define "awssecretName" }}
 {{- printf "%s-%s" "awssecret" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end }}

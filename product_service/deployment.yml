@@ -37,6 +37,8 @@ spec:
               value: "user-service"
             - name: PYTHONUNBUFFERED
               value: "1"
+            - name: DB-HOST
+              value: db-product
           resources:
             requests:
               memory: "64Mi"

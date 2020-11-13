@@ -3,6 +3,7 @@ from order_api import order_api_blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 import models
 from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ load_dotenv(dotenv_path='../.env')
 app.config.update(dict(
     SECRET_KEY="powerful secretkey",
     WTF_CSRF_SECRET_KEY="a csrf secret key",
-    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@order-db/order',
+    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@'+os.getenv('DB-HOST')+'/order',
 ))
 
 models.init_app(app)

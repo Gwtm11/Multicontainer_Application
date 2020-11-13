@@ -2,6 +2,7 @@ from flask import Flask
 from product_api import product_api_blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 import models
+import os
 
 SWAGGER_URL = '/api/docs'
 API_URL = '/api/product/docs.json'
@@ -13,7 +14,7 @@ def create_app():
     app.config.update(dict(
         SECRET_KEY="powerful secretkey",
         WTF_CSRF_SECRET_KEY="a csrf secret key",
-        SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@product-db/product',
+        SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@'+os.getenv('DB-HOST')+'/product',
         SQLALCHEMY_TRACK_MODIFICATIONS=False
     ))
 

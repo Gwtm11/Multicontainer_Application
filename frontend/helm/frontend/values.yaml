@@ -13,12 +13,12 @@ serviceAccount:
   name: frontend
 environment:
   orderName: ORDER_SERVICE
-  orderValue: service-order
+  orderValue: "service-order"
   productName: PRODUCT_SERVICE
-  productValue: service-product
+  productValue: "service-product"
   userName: USER_SERVICE
-  userValue: service-user
+  userValue: "service-user"
   pythonBufferName: PYTHONUNBUFFERED
-  pythonBufferValue: 1
+  pythonBufferValue: "1"
 
     
