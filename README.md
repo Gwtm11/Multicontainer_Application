@@ -8,13 +8,22 @@ A retail app that maintains a separate active directory for the user and DB to s
 ![Workflow and basic architecture](Images/Architecture.png | width=400)
 
 
-###Installation GUIDE
 
-Required Modules
+
+## Installation GUIDE
+
+### Create K8 Cluster and Setup JENKINS CI/CD pipeline
+ View README from 
+ * [Create KOPS cluster](https://github.com/Gwtm11/Infrastructure-AWS/tree/main/Infrastructure-kubernetes)
+ * [Create Jenkins instance in AWS to setup CI/CD ](https://github.com/Gwtm11/Infrastructure-AWS/tree/main/infrastructure-jenkins)
+
+Required Installations
 * KOPS
 * HELM
 * Kubectl
 * Docker 
+* Boto3 
+
 
 ## Setup k8 dashboard
 
@@ -64,3 +73,7 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 ```
 kubectl proxy
 ```
+
+
+
+
