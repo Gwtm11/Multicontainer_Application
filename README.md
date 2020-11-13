@@ -13,7 +13,7 @@ A retail app that maintains a separate active directory for the user and DB to s
 ## Installation GUIDE
 
 ### Create K8 Cluster and Setup JENKINS CI/CD pipeline
- View README from 
+ Follow README from[Infrastructure AWS](https://github.com/Gwtm11/Infrastructure-AWS)
  * [Create KOPS cluster](https://github.com/Gwtm11/Infrastructure-AWS/tree/main/Infrastructure-kubernetes)
  * [Create Jenkins instance in AWS to setup CI/CD ](https://github.com/Gwtm11/Infrastructure-AWS/tree/main/infrastructure-jenkins)
 
@@ -74,6 +74,41 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 kubectl proxy
 ```
 
+### HELM INSTALLATION
 
+After setting up K8 dashboard, Start deploying the pods into cluster.
+
+#### Step 1: Deploy frontend app:
+move to the frontend directory
+```
+helm install frontend ./helm/frontend
+```
+
+#### Step 2: Deploy frontend app:
+move to the order_service directory
+```
+helm install order ./helm/order
+```
+
+#### Step 3: Deploy frontend app:
+move to the product_service directory
+```
+helm install product ./helm/product
+```
+
+#### Step 4: Deploy frontend app:
+move to the user_service directory
+```
+helm install user ./helm/user
+```
+
+
+#### TEARDOWN
+```
+helm uninstall frontend
+helm uninstall order
+helm uninstall product
+helm uninstall user
+```
 
 
