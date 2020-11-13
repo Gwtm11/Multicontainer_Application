@@ -18,6 +18,7 @@ When Deployed 7 diffrent pods get created in AWS with High availability in diffr
 * *Encryption at rest and in transit*
 * *ELK stack can be deployed on all the pods to get the logs*
 
+![Application hosted in AWS](Images/Applicationhosted-AWS)
 
 
 ![Workflow and basic architecture](Images/Architecture.png)
