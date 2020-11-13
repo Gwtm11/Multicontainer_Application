@@ -95,6 +95,11 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 ```
 kubectl proxy
 ```
+### View Dashboard
+
+```
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+```
 
 ### HELM INSTALLATION
 
