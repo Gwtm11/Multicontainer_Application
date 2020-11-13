@@ -22,7 +22,7 @@ When Deployed 7 diffrent pods get created in AWS with High availability in diffr
 > please click on the below link to view the application hosted in AWS
 > * http://gwtm.me/
 
-=============*****************==============================================
+==========================================================================
 
 ![Application hosted in AWS](Images/Applicationhosted-AWS.png)
 
