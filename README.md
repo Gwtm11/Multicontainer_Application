@@ -35,6 +35,7 @@ Required Installations
 * HELM
 * Kubectl
 * Docker 
+* Minkube
 * Boto3 
 
 ### Create K8 Cluster and Setup JENKINS CI/CD pipeline
@@ -131,6 +132,28 @@ helm uninstall order
 helm uninstall product
 helm uninstall user
 ```
+
+### TO create cluster locally
+
+* Install Minkube
+
+* Get kube context
+```
+kubectl config get-contexts
+```
+* Switch to minkube
+```
+kubectl config use-context CONTEXT_NAME
+```
+* Start helm installation
+
+* After succesfull deployment, start minikube tunnel to connect to load balancer
+
+```
+minikube tunnel
+```
+
+
 
 #### After Deployment
 
