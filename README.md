@@ -43,6 +43,7 @@ http://gwtm.me/
 * Bastion Hosts to reach private instances.
 * Hosted in AWS Route 53 
 * Deployments using docker compose
+
 ===============================APP FEATURES====================================
 
 ![Workflow and basic architecture](Images/Architecture.png)
