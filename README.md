@@ -19,12 +19,33 @@ When Deployed 7 diffrent pods get created in AWS with High availability in diffr
 * *ELK stack can be deployed on all the pods to get the logs*
 
 
+=======================LIVE APP======================================
+please click the below link to view the app
+```
+http://gwtm.me/
+```
+=======================LIVE APP=======================================
+
 
 ![Application hosted in AWS](Images/Applicationhosted-AWS.png)
 
+===============================APP FEATURES================================
+|| * Simple Web APP
+|| * Dockerzied
+|| * KOPS Cluster 
+|| * JENKINS - CI/CD Setup
+|| * HELM Installation 
+|| * Service Discovery via k8 service account
+|| * Swagger API Documentation
+|| * Session Based Authentication
+|| * DB instances in diffrent pods communicate and persist a single DB
+|| * 6 Instance running in multiple AZs
+|| * Bastion Hosts to reach private instances.
+|| * Hosted in AWS Route 53 
+|| * Deployments using docker compose
+===========================================================================
 
 ![Workflow and basic architecture](Images/Architecture.png)
-
 
 
  ============= Installation GUIDE==============================================
