@@ -19,12 +19,14 @@ When Deployed 7 diffrent pods get created in AWS with High availability in diffr
 * *ELK stack can be deployed on all the pods to get the logs*
 
 
-=======================LIVE APP======================================
-please click the below link to view the app
+=======================APP======================================
+APPLICATION IS DOWN FOR MORE FEATURES
+
 ```
 http://gwtm.me/
 ```
-=======================LIVE APP=======================================
+
+=======================APP=======================================
 
 
 ![Application hosted in AWS](Images/Applicationhosted-AWS.png)
